@@ -1,4 +1,4 @@
-define(['pipAPI','https://reysala.github.io/ModifiedBlackWhiteIAT/RaceIAT.js'], function(APIConstructor, iatExtension){
+define(['pipAPI','https://github.com/reysala/ModifiedBlackWhiteIAT/ShortQualtricsIAT.js'], function(APIConstructor, iatExtension){
 	var API = new APIConstructor();
   
   //Randomly choose the attribute words from a larger list of attribute words.
