@@ -2,7 +2,7 @@
 define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) {
 
 	/**
-	Created by: Yoav Bar-Anan (baranan@gmail.com). Modified by Gal
+	Created by: Yoav Bar-Anan (baranan@gmail.com). Modified by Adan Reyes Salas
 	 * @param  {Object} options Options that replace the defaults...
 	 * @return {Object}         PIP script
 	**/
@@ -68,7 +68,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				//Stimulus css
 				stimulusCss : {color:'#336600','font-size':'2.3em'}
 			},
-			attribute2 :
+			attribute1 :
 			{
 				name : 'Bad words',
 				title : {
@@ -89,7 +89,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				//Stimulus css
 				stimulusCss : {color:'#0000FF','font-size':'2.3em'}
 			},
-			attribute1 :
+			attribute2 :
 			{
 				name : 'Good words',
 				title : {
@@ -119,22 +119,22 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			
 			////In each block, we can include a number of mini-blocks, to reduce repetition of same group/response.
 			////If you set the number of trials in any block to 0, that block will be skipped.
-			blockAttributes_nTrials : 10,
+			blockAttributes_nTrials : 20,
 			blockAttributes_nMiniBlocks : 2,
-			blockCategories_nTrials : 10,
+			blockCategories_nTrials : 20,
 			blockCategories_nMiniBlocks : 2,
 			blockFirstCombined_nTrials : 20,
-			blockFirstCombined_nMiniBlocks : 2,
+			blockFirstCombined_nMiniBlocks : 5,
 			blockSecondCombined_nTrials : 0, //Change to 0 if you want 5 blocks (you would probably want to increase blockFirstCombined_nTrials).
 			blockSecondCombined_nMiniBlocks : 5, 
-			blockSwitch_nTrials : 20,
-			blockSwitch_nMiniBlocks : 5,
+			blockSwitch_nTrials : 28,
+			blockSwitch_nMiniBlocks : 7,
 
 			//Should we randomize which attribute is on the right, and which on the left?
 			randomAttSide : false, // Accepts 'true' and 'false'. If false, then attribute2 on the right.
 
 			//Should we randomize which category is on the right first?
-			randomBlockOrder : false, //Accepts 'true' and 'false'. If false, then category1 on the left first.
+			randomBlockOrder : true, //Accepts 'true' and 'false'. If false, then category1 on the left first.
 			//Note: the player sends block3Cond at the end of the task (saved in the explicit table) to inform about the categories in that block.
 			//In the block3Cond variable: "att1/cat1,att2/cat2" means att1 and cat1 on the left, att2 and cat2 on the right.
 
