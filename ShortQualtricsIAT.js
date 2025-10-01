@@ -68,7 +68,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				//Stimulus css
 				stimulusCss : {color:'#336600','font-size':'2.3em'}
 			},
-			attribute2 :
+			attribute1 :
 			{
 				name : 'Bad words',
 				title : {
@@ -89,7 +89,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				//Stimulus css
 				stimulusCss : {color:'#0000FF','font-size':'2.3em'}
 			},
-			attribute1 :
+			attribute2 :
 			{
 				name : 'Good words',
 				title : {
@@ -119,16 +119,16 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			
 			////In each block, we can include a number of mini-blocks, to reduce repetition of same group/response.
 			////If you set the number of trials in any block to 0, that block will be skipped.
-			blockAttributes_nTrials : 20,
+			blockAttributes_nTrials : 10,
 			blockAttributes_nMiniBlocks : 2,
-			blockCategories_nTrials : 20,
+			blockCategories_nTrials : 10,
 			blockCategories_nMiniBlocks : 2,
 			blockFirstCombined_nTrials : 20,
-			blockFirstCombined_nMiniBlocks : 5,
+			blockFirstCombined_nMiniBlocks : 2,
 			blockSecondCombined_nTrials : 0, //Change to 0 if you want 5 blocks (you would probably want to increase blockFirstCombined_nTrials).
 			blockSecondCombined_nMiniBlocks : 5, 
-			blockSwitch_nTrials : 28,
-			blockSwitch_nMiniBlocks : 7,
+			blockSwitch_nTrials : 20,
+			blockSwitch_nMiniBlocks : 5,
 
 			//Should we randomize which attribute is on the right, and which on the left?
 			randomAttSide : false, // Accepts 'true' and 'false'. If false, then attribute2 on the right.
@@ -657,19 +657,19 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		//Four trials for the attributes.
 		basicTrialSets.att1left =
 			createBasicTrialSet({side:'left', stimSet: 'att1'});
-		basicTrialSets.att1left =
-			createBasicTrialSet({side:'left', stimSet: 'att1'});
-		basicTrialSets.att2right =
-			createBasicTrialSet({side:'right', stimSet: 'att2'});
+		basicTrialSets.att1right =
+			createBasicTrialSet({side:'right', stimSet: 'att1'});
+		basicTrialSets.att2left =
+			createBasicTrialSet({side:'left', stimSet: 'att2'});
 		basicTrialSets.att2right =
 			createBasicTrialSet({side:'right', stimSet: 'att2'});
 		//Four trials for the categories.
 		basicTrialSets.cat1left =
 			createBasicTrialSet({side:'left', stimSet: 'cat1'});
-		basicTrialSets.cat1left =
-			createBasicTrialSet({side:'left', stimSet: 'cat1'});
-		basicTrialSets.cat2right =
-			createBasicTrialSet({side:'right', stimSet: 'cat2'});
+		basicTrialSets.cat1right =
+			createBasicTrialSet({side:'right', stimSet: 'cat1'});
+		basicTrialSets.cat2left =
+			createBasicTrialSet({side:'left', stimSet: 'cat2'});
 		basicTrialSets.cat2right =
 			createBasicTrialSet({side:'right', stimSet: 'cat2'});
 
@@ -1007,10 +1007,10 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		blockParamsCats.right1 = cat2;
 		if (rightCatName == cat1.name)
 		{
-			blockParamsCats.left1 = cat1;
-			rightCatTrial = 'cat1left';
-			blockParamsCats.right1 = cat2;
-			leftCatTrial = 'cat2right';
+			blockParamsCats.right1 = cat1;
+			rightCatTrial = 'cat1right';
+			blockParamsCats.left1 = cat2;
+			leftCatTrial = 'cat2left';
 		}
 		var blockCondition = blockParamsCats.left1.name + ',' + blockParamsCats.right1.name;
 		blockParamsCats.nMiniBlocks = globalObj.blockCategories_nMiniBlocks;
@@ -1041,23 +1041,23 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		////Block 2: Attributes
 		//Set variables related to the sides
 		blockParamsAtts.left1 = att1;
-		blockParamsAtts.right2 = att2;
+		blockParamsAtts.right1 = att2;
 		//Names of the trials in this block
 		var leftAttTrial = 'att1left';
 		var rightAttTrial = 'att2right';
-		if (rightAttName == att2.name)
+		if (rightAttName == att1.name)
 		{
-			blockParamsAtts.left1 = att1;
-			rightAttTrial = 'att2right';
-			leftAttTrial = 'att1left';
-			blockParamsAtts.left1 = att1;
+			blockParamsAtts.right1 = att1;
+			rightAttTrial = 'att1right';
+			leftAttTrial = 'att2left';
+			blockParamsAtts.left1 = att2;
 		}
 		//Set the block's condition
-		blockCondition = blockParamsAtts.left1.name + ',' + blockParamsAtts.right2.name;
+		blockCondition = blockParamsAtts.left1.name + ',' + blockParamsAtts.right1.name;
 		var COMPATIBLE = 'compatible';
 		var INCOMPATIBLE = 'incompatible';
 		var isCompatible = INCOMPATIBLE;
-		if ( (rightAttName == att2.name && rightCatName == cat2.name) || 
+		if ( (rightAttName == att1.name && rightCatName == cat1.name) || 
 			(rightAttName == att2.name && rightCatName == cat2.name) )
 		{
 			isCompatible = COMPATIBLE;
@@ -1098,11 +1098,11 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			remindErrorTextTouch : globalObj.remindErrorTextTouch
 		};
 		//We get the categories from the first two blocks.
-		blockParamsCombined.right2 = blockParamsAtts.right2;
+		blockParamsCombined.right1 = blockParamsAtts.right1;
 		blockParamsCombined.left1 = blockParamsAtts.left1;
-		blockParamsCombined.right2 = blockParamsCats.right2;
-		blockParamsCombined.left1 = blockParamsCats.left1;
-		blockCondition = blockParamsCombined.left1.name + '/' + blockParamsCombined.left1.name + ',' + blockParamsCombined.right2.name + '/' + blockParamsCombined.right2.name;
+		blockParamsCombined.right2 = blockParamsCats.right1;
+		blockParamsCombined.left2 = blockParamsCats.left1;
+		blockCondition = blockParamsCombined.left2.name + '/' + blockParamsCombined.left1.name + ',' + blockParamsCombined.right2.name + '/' + blockParamsCombined.right1.name;
 		//We will send the condition of the third block to the server at the end.
 		var block3Cond = blockCondition;
 		//Number variables.
@@ -1125,8 +1125,8 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
     		{
     			trialSequence.push(getMiniMixer4({
     			nTrialsInMini : nTrialsInMini, currentCond : blockCondition, cong:isCompatible, 
-    			rightTrial2 : rightAttTrial, leftTrial1 : leftAttTrial,
-    			rightTrial2 : rightCatTrial, leftTrial1 : leftCatTrial,
+    			rightTrial1 : rightAttTrial, leftTrial1 : leftAttTrial,
+    			rightTrial2 : rightCatTrial, leftTrial2 : leftCatTrial,
     			blockNum : iBlock, blockLayout : blockLayout, parcel:'first'}));
     		}
 			iBlock++;
@@ -1150,8 +1150,8 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			{
 				trialSequence.push(getMiniMixer4({
 				nTrialsInMini : nTrialsInMini, currentCond : blockCondition, cong:isCompatible, 
-				rightTrial2 : rightAttTrial, leftTrial1 : leftAttTrial,
-				rightTrial2 : rightCatTrial, leftTrial1 : leftCatTrial,
+				rightTrial1 : rightAttTrial, leftTrial1 : leftAttTrial,
+				rightTrial2 : rightCatTrial, leftTrial2 : leftCatTrial,
 				blockNum : iBlock, blockLayout : blockLayout, parcel:'first'}));
 			}
 		    iBlock++;
@@ -1160,16 +1160,16 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		//////////////////////////////
 		////Switch categories side block.
 		//Do the switch
-		blockParamsCats.right2 = blockParamsCombined.left1;
+		blockParamsCats.right1 = blockParamsCombined.left2;
 		blockParamsCats.left1 = blockParamsCombined.right2;
-		rightCatTrial = (rightCatTrial == 'cat2right') ? 'cat2right' : 'cat2right';
-		leftCatTrial = (leftCatTrial == 'cat1left') ? 'cat1left' : 'cat1left';
+		rightCatTrial = (rightCatTrial == 'cat1right') ? 'cat2right' : 'cat1right';
+		leftCatTrial = (leftCatTrial == 'cat1left') ? 'cat2left' : 'cat1left';
 		blockParamsCats.instTemplate = isTouch ? globalObj.instSwitchCategoriesTouch : globalObj.instSwitchCategories;
 		//Get numbers
 		blockParamsCats.nMiniBlocks = globalObj.blockSwitch_nMiniBlocks;
 		blockParamsCats.nTrials = globalObj.blockSwitch_nTrials;
 		//The rest is like blocks 1 and 2.
-		blockCondition = blockParamsCats.left1.name + ',' + blockParamsCats.right2.name;
+		blockCondition = blockParamsCats.left1.name + ',' + blockParamsCats.right1.name;
 		blockParamsCats.blockNum = iBlock;
 		blockParamsCats.nCats = 2;
 		//The layout for the sorting trials.
@@ -1192,9 +1192,9 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		//////////////////////////////
 		////The other combined block
 		//Get the categories side from the switch block.
-		blockParamsCombined.right2 = blockParamsCats.right2;
-		blockParamsCombined.left1 = blockParamsCats.left1;
-		blockCondition = blockParamsCombined.left1.name + '/' + blockParamsCombined.left1.name + ',' + blockParamsCombined.right2.name + '/' + blockParamsCombined.right2.name;
+		blockParamsCombined.right2 = blockParamsCats.right1;
+		blockParamsCombined.left2 = blockParamsCats.left1;
+		blockCondition = blockParamsCombined.left2.name + '/' + blockParamsCombined.left1.name + ',' + blockParamsCombined.right2.name + '/' + blockParamsCombined.right1.name;
 		//Number variables.
 		blockParamsCombined.nMiniBlocks = globalObj.blockFirstCombined_nMiniBlocks;
 		blockParamsCombined.nTrials = globalObj.blockFirstCombined_nTrials;
@@ -1218,8 +1218,8 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
     		{
     			trialSequence.push(getMiniMixer4({
     			nTrialsInMini : nTrialsInMini, currentCond : blockCondition, cong:isCompatible, 
-    			rightTrial2 : rightAttTrial, leftTrial1 : leftAttTrial,
-    			rightTrial2 : rightCatTrial, leftTrial1 : leftCatTrial,
+    			rightTrial1 : rightAttTrial, leftTrial1 : leftAttTrial,
+    			rightTrial2 : rightCatTrial, leftTrial2 : leftCatTrial,
     			blockNum : iBlock, blockLayout : blockLayout, parcel:'first'}));
     		}
 			iBlock++;
@@ -1248,8 +1248,8 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			{
 				trialSequence.push(getMiniMixer4({
 				nTrialsInMini : nTrialsInMini, currentCond : blockCondition, cong:isCompatible, 
-				rightTrial2 : rightAttTrial, leftTrial1 : leftAttTrial,
-				rightTrial2 : rightCatTrial, leftTrial1 : leftCatTrial,
+				rightTrial1 : rightAttTrial, leftTrial1 : leftAttTrial,
+				rightTrial2 : rightCatTrial, leftTrial2 : leftCatTrial,
 				blockNum : iBlock, blockLayout : blockLayout, parcel:'first'}));
 			}
         }
