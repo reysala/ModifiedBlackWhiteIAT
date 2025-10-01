@@ -1007,10 +1007,10 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		blockParamsCats.right1 = cat2;
 		if (rightCatName == cat1.name)
 		{
-			blockParamsCats.right1 = cat1;
-			rightCatTrial = 'cat1right';
-			blockParamsCats.left1 = cat2;
-			leftCatTrial = 'cat2left';
+			blockParamsCats.left1 = cat1;
+			rightCatTrial = 'cat1left';
+			blockParamsCats.right1 = cat2;
+			leftCatTrial = 'cat2right';
 		}
 		var blockCondition = blockParamsCats.left1.name + ',' + blockParamsCats.right1.name;
 		blockParamsCats.nMiniBlocks = globalObj.blockCategories_nMiniBlocks;
