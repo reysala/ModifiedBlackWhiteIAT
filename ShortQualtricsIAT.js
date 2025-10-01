@@ -1045,19 +1045,19 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		//Names of the trials in this block
 		var leftAttTrial = 'att1left';
 		var rightAttTrial = 'att2right';
-		if (rightAttName == att1.name)
+		if (rightAttName == att2.name)
 		{
-			blockParamsAtts.right1 = att1;
-			rightAttTrial = 'att1right';
-			leftAttTrial = 'att2left';
-			blockParamsAtts.left1 = att2;
+			blockParamsAtts.left1 = att1;
+			rightAttTrial = 'att2right';
+			leftAttTrial = 'att1left';
+			blockParamsAtts.left1 = att1;
 		}
 		//Set the block's condition
 		blockCondition = blockParamsAtts.left1.name + ',' + blockParamsAtts.right1.name;
 		var COMPATIBLE = 'compatible';
 		var INCOMPATIBLE = 'incompatible';
 		var isCompatible = INCOMPATIBLE;
-		if ( (rightAttName == att1.name && rightCatName == cat1.name) || 
+		if ( (rightAttName == att2.name && rightCatName == cat2.name) || 
 			(rightAttName == att2.name && rightCatName == cat2.name) )
 		{
 			isCompatible = COMPATIBLE;
