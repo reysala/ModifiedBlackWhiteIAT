@@ -131,10 +131,10 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			blockSwitch_nMiniBlocks : 7,
 
 			//Should we randomize which attribute is on the right, and which on the left?
-			randomAttSide : false, // Accepts 'true' and 'false'. If false, then attribute2 on the right.
+			randomAttSide : true, // Accepts 'true' and 'false'. If false, then attribute2 on the right.
 
 			//Should we randomize which category is on the right first?
-			randomBlockOrder : false, //Accepts 'true' and 'false'. If false, then category1 on the left first.
+			randomBlockOrder : true, //Accepts 'true' and 'false'. If false, then category1 on the left first.
 			//Note: the player sends block3Cond at the end of the task (saved in the explicit table) to inform about the categories in that block.
 			//In the block3Cond variable: "att1/cat1,att2/cat2" means att1 and cat1 on the left, att2 and cat2 on the right.
 
