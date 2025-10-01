@@ -68,7 +68,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				//Stimulus css
 				stimulusCss : {color:'#336600','font-size':'2.3em'}
 			},
-			attribute1 :
+			attribute2 :
 			{
 				name : 'Bad words',
 				title : {
@@ -89,7 +89,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				//Stimulus css
 				stimulusCss : {color:'#0000FF','font-size':'2.3em'}
 			},
-			attribute2 :
+			attribute1 :
 			{
 				name : 'Good words',
 				title : {
