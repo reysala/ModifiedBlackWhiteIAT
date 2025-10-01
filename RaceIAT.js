@@ -59,7 +59,7 @@ define(['pipAPI','https://reysala.github.io/ModifiedBlackWhiteIAT/ShortQualtrics
     		//Stimulus css (style)
     		stimulusCss : {color:'#31940F','font-size':'2.3em'}
         },
-		attribute1 :
+		attribute2 :
 		{
 			name : 'Bad',
 			title : {
@@ -80,7 +80,7 @@ define(['pipAPI','https://reysala.github.io/ModifiedBlackWhiteIAT/ShortQualtrics
 			//Stimulus css
 			stimulusCss : {color:'#0000FF','font-size':'2.3em'}
 		},
-		attribute2 :
+		attribute1 :
 		{
 			name : 'Good',
 			title : {
